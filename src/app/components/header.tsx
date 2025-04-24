@@ -5,13 +5,13 @@ import MobileMenu from "./mobileMenu";
 
 export default function Header() {
     return (
-        <header className="grid grid-cols-[1fr_auto_1fr] items-center max-w-[1400px] mx-auto w-full h-32 p-4 2xs:px-8 relative">
+        <header className="grid grid-cols-[1fr_auto_1fr] items-center max-w-[1400px] gap-4 mx-auto w-full h-32 px-8 relative">
             <div className="block lg:hidden"></div>
 
             <NavLinks />
 
             <Link href='/'>
-                <h1 className='whitespace-nowrap text-base sm:text-xl md:text-2xl lg:text-3xl font-semibold tracking-wider text-center justify-self-center'>
+                <h1 className='sm:whitespace-nowrap text-base sm:text-xl md:text-2xl lg:text-3xl font-semibold tracking-wider justify-self-center'>
                     ANDRES PESCADER ARQ
                 </h1>
             </Link>
