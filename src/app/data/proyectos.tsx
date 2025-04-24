@@ -3,7 +3,7 @@ import { Proyecto } from '../types'
 
 export const proyectos: Proyecto[] = [
     {
-        proy_id: 'proyecto-casa-lago',
+        proy_id: '1',
         titulo: 'Casa en el Lago',
         descripcion: 'Una vivienda moderna frente al lago.',
         imagen: '/images/proy_01/gonzalez-jacobson-aarquitectura-villas_57.jpg',
@@ -20,7 +20,7 @@ export const proyectos: Proyecto[] = [
         )
     },
     {
-        proy_id: 'proyecto-cabaña-bosque',
+        proy_id: '2',
         titulo: 'Cabaña en el Bosque',
         descripcion: 'Refugio cálido y minimalista en medio del bosque.',
         imagen: '/images/proy_02/decoracion-locales-comerciales-madrid.jpg',

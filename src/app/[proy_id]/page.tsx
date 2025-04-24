@@ -1,14 +1,15 @@
 import { notFound } from 'next/navigation'
 import { proyectos } from '../data/proyectos'
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
   return proyectos.map((proyecto) => ({
     proy_id: proyecto.proy_id
   }))
 }
 
 export default function ProyectoPage({ params }: { params: { proy_id: string } }) {
-  const proyecto = proyectos.find((p) => p.proy_id === params.proy_id)
+  const { proy_id } = params
+  const proyecto = proyectos.find((p) => p.proy_id === proy_id)
 
   if (!proyecto) return notFound()
 
