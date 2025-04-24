@@ -7,8 +7,8 @@ export function generateStaticParams() {
   }))
 }
 
-export default function ProyectoPage({ params }: { params: { proy_id: string } }) {
-  const { proy_id } = params
+export default async function ProyectoPage({ params }: { params: { proy_id: string } }) {
+  const { proy_id } = await params
   const proyecto = proyectos.find((p) => p.proy_id === proy_id)
 
   if (!proyecto) return notFound()
