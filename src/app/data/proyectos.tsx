@@ -9,7 +9,6 @@ export const proyectos: Proyecto[] = [
         imagen: '/images/proy_01/gonzalez-jacobson-aarquitectura-villas_57.jpg',
         contenidoEspecifico: () => (
             <>
-                <p>La casa fue diseñada para integrarse con el paisaje natural.</p>
                 < Image
                     src="/images/proy_01/gonzalez-jacobson-aarquitectura-villas_57.jpg"
                     alt="Detalle casa lago"
@@ -26,7 +25,6 @@ export const proyectos: Proyecto[] = [
         imagen: '/images/proy_02/decoracion-locales-comerciales-madrid.jpg',
         contenidoEspecifico: () => (
             <>
-                <p>Esta cabaña está hecha completamente en madera nativa.</p>
                 < Image
                     src="/images/proy_02/decoracion-locales-comerciales-madrid.jpg"
                     alt="Interior cabaña"

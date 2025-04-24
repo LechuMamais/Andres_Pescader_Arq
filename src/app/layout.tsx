@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { montserrat } from './fonts'
 import { } from 'next/font/google'
+import Footer from './components/footer'
+import Header from './components/header'
 
 
 export const metadata: Metadata = {
@@ -16,11 +18,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${montserrat.className} antialiased`}>
-        <div className=' flex justify-center w-full max-w-[1400px] h-full py-8 mx-auto md:px-8 min-h-[100svh] bg-black text-white'>
+      <body className={`${montserrat.className} antialiased min-h-[120svh] w-[100svw] bg-black text-white flex flex-col`}>
+        <Header />
+        <main className='flex justify-center w-full max-w-[1600px] h-full pb-16 mx-auto lg:px-8 flex-1'>
           {children}
-
-        </div>
+        </main>
+        <Footer />
       </body>
     </html >
   )
