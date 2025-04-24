@@ -30,18 +30,58 @@ export default function Header() {
         visible: { opacity: 1, y: 0 }
     };
 
-    const pathName = usePathname();
-    const isHomePage = pathName === '/';
-    const isContactPage = pathName === '/contact';
+    const pathname = usePathname();
+    const [hoveredLink, setHoveredLink] = useState<string | null>(null);
+
+    const links = [
+        { href: '/', label: 'WORK', width: '65px' },
+        { href: '/contact', label: 'CONTACT', width: '95px' }
+    ];
+
+    // Determina qué link mostrar como activo (prioriza hover sobre pathname)
+    const activeLink = hoveredLink !== null
+        ? links.find(link => link.href === hoveredLink)
+        : links.find(link => link.href === pathname);
+
 
     return (
         <header className="grid grid-cols-[1fr_auto_1fr] items-center max-w-[1400px] mx-auto w-full h-32 p-4 2xs:px-8 relative">
 
             <div className="block lg:hidden"></div>
 
-            <nav className='hidden lg:flex gap-8 text-lg font-semibold tracking-wider'>
-                <Link href='/' className={`header_link`}>WORK</Link>
-                <Link href='/contact' className={`header_link`}>CONTACT</Link>
+            <nav className='hidden lg:flex gap-8 text-lg font-semibold tracking-wider relative'>
+                {links.map((link) => (
+                    <Link
+                        key={link.href}
+                        href={link.href}
+                        className="relative"
+                        onMouseEnter={() => setHoveredLink(link.href)}
+                        onMouseLeave={() => setHoveredLink(null)}
+                    >
+                        {link.label}
+                    </Link>
+                ))}
+
+                <AnimatePresence>
+                    {activeLink && (
+                        <motion.div
+                            className="absolute bottom-0 h-[2px] bg-white"
+                            initial={false}
+                            layoutId="nav-indicator"
+                            animate={{
+                                width: activeLink.width,
+                                x: links.findIndex(l => l.href === activeLink.href) * 97, // Ajusta este valor según tu gap
+                                opacity: 1
+                            }}
+                            transition={{
+                                type: 'spring',
+                                stiffness: 350,
+                                damping: 22,
+                                mass: 0.5
+                            }}
+                        />
+                    )}
+                </AnimatePresence>
             </nav>
 
             <Link href='/'>
@@ -49,6 +89,7 @@ export default function Header() {
                     ANDRES PESCADER ARQ
                 </h1>
             </Link>
+
 
             {/* X - Burger menu animado! */}
             <div className="flex justify-end lg:hidden">
