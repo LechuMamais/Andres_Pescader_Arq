@@ -5,5 +5,7 @@ export type Proyecto = {
     titulo: string
     descripcion: string
     imagen: string
+    categoria: string
+    hashTags?: string[]
     contenidoEspecifico: () => ReactElement
 }

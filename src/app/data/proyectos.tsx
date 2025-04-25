@@ -7,12 +7,14 @@ export const proyectos: Proyecto[] = [
         titulo: 'GRUPO MCI',
         descripcion: 'GRUPO MCI',
         imagen: '/images/proy_01/01.png',
+        categoria: 'oficinas',
+        hashTags: ['#oficinas', '#diseño', '#interiorismo'],
         contenidoEspecifico: () => (
             <>
                 < Image
                     src="/images/proy_01/01.png"
                     alt="GRUPO MCI_01"
-                    width={800}
+                    width={1200}
                     height={600}
                 />
             </>
@@ -23,6 +25,8 @@ export const proyectos: Proyecto[] = [
         titulo: 'Cabaña en el Bosque',
         descripcion: 'Refugio cálido y minimalista en medio del bosque.',
         imagen: '/images/proy_02/decoracion-locales-comerciales-madrid.jpg',
+        categoria: 'vivienda',
+        hashTags: ['#vivienda', '#diseño', '#interiorismo'],
         contenidoEspecifico: () => (
             <>
                 < Image
