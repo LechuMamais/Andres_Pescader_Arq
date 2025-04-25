@@ -1,5 +1,3 @@
-import Link from 'next/link'
-import Image from 'next/image'
 import { proyectos } from './data/proyectos'
 import { Proyecto } from './types'
 import ProjectCard from './components/project_card'

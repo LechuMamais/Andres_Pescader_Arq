@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import type { Viewport } from 'next'
 import './globals.css'
 import { montserrat } from './fonts'
 import { } from 'next/font/google'
@@ -8,7 +9,18 @@ import Header from './components/header'
 
 export const metadata: Metadata = {
   title: 'Andres Pescader Arq',
-  description: 'Architecture Portfolio',
+  description: 'Portfolio profesional de arquitectura con proyectos residenciales y comerciales',
+  category: 'arqhitecture',
+  keywords: ['Andres Pescader', 'Architecture', 'Portfolio', 'Arq', 'diseño', 'construcción'],
+}
+
+
+export const viewport: Viewport = {
+  themeColor: 'black',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 }
 
 export default function RootLayout({

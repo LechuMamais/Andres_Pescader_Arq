@@ -15,9 +15,12 @@ export default async function ProyectoPage({ params }: { params: { proy_id: stri
 
   return (
     <main>
-      <h1>{proyecto.titulo}</h1>
-      <p>{proyecto.descripcion}</p>
-      {proyecto.contenidoEspecifico && proyecto.contenidoEspecifico()}
+      <article itemScope itemType="https://schema.org/CreativeWork">
+
+        <h1 itemProp="name">{proyecto.titulo}</h1>
+        <p itemProp="description">{proyecto.descripcion}</p>
+        {proyecto.contenidoEspecifico && proyecto.contenidoEspecifico()}
+      </article>
     </main>
   )
 }
