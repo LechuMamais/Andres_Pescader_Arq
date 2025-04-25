@@ -4,14 +4,14 @@ import { Proyecto } from '../types'
 export const proyectos: Proyecto[] = [
     {
         proy_id: '1',
-        titulo: 'Casa en el Lago',
-        descripcion: 'Una vivienda moderna frente al lago.',
-        imagen: '/images/proy_01/gonzalez-jacobson-aarquitectura-villas_57.jpg',
+        titulo: 'GRUPO MCI',
+        descripcion: 'GRUPO MCI',
+        imagen: '/images/proy_01/01.png',
         contenidoEspecifico: () => (
             <>
                 < Image
-                    src="/images/proy_01/gonzalez-jacobson-aarquitectura-villas_57.jpg"
-                    alt="Detalle casa lago"
+                    src="/images/proy_01/01.png"
+                    alt="GRUPO MCI_01"
                     width={800}
                     height={600}
                 />
