@@ -16,6 +16,22 @@ export async function POST(req: NextRequest) {
         )
     }
 
+    // Validar longitud máxima del email (254 caracteres es el máximo según RFC)
+    if (email.length > 254) {
+        return NextResponse.json(
+            { message: 'El email es demasiado largo' },
+            { status: 400 }
+        )
+    }
+
+    // Validar que el nombre no esté vacío después de trim()
+    if (!name.trim()) {
+        return NextResponse.json(
+            { message: 'El nombre no puede estar vacío' },
+            { status: 400 }
+        )
+    }
+
     try {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -27,7 +43,7 @@ export async function POST(req: NextRequest) {
 
         await transporter.sendMail({
             from: `"${name}" <${email}>`,
-            to: process.env.EMAIL_USER,
+            to: process.env.EMAIL_ARQ,
             subject: 'Nuevo mensaje desde tu sitio web',
             html: `
         <h3>Nuevo mensaje de ${name}!</h3>

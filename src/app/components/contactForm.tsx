@@ -38,9 +38,14 @@ export default function ContactForm() {
             return
         }
 
-        // Validación del formato de email
+        // Validar que el nombre no esté vacío después de trim()
+        if (!formData.name.trim()) {
+            setError('El nombre no puede estar vacío')
+            return
+        }
+
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        if (!emailRegex.test(formData.email)) {
+        if (!emailRegex.test(formData.email) || formData.email.length > 254) {
             setError('Por favor ingresa un email válido')
             return
         }
@@ -124,7 +129,7 @@ export default function ContactForm() {
 
             {status === 'success' && (
                 <FloatingMessage
-                    message="Tu mensaje fue enviado correctamente 🎉"
+                    message="Tu mensaje fue enviado correctamente."
                     type="success"
                     onClose={() => setStatus(null)}
                 />
