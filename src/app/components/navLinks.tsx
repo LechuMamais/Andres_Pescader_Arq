@@ -6,73 +6,73 @@ import { useState, useEffect } from 'react'
 import { Route } from 'next'
 
 interface NavLink {
-    href: string
-    label: string
-    width: string
+  href: string
+  label: string
+  width: string
 }
 
 const links: NavLink[] = [
-    { href: '/', label: 'WORK', width: '65px' },
-    { href: '/contact', label: 'CONTACT', width: '95px' }
+  { href: '/', label: 'WORK', width: '65px' },
+  { href: '/contact', label: 'CONTACT', width: '95px' }
 ]
 
 export default function NavLinks() {
-    const pathname = usePathname()
+  const pathname = usePathname()
 
-    const [hoveredLink, setHoveredLink] = useState<string | null>(null)
-    const [clickedLink, setClickedLink] = useState<string | null>(null)
+  const [hoveredLink, setHoveredLink] = useState<string | null>(null)
+  const [clickedLink, setClickedLink] = useState<string | null>(null)
 
-    useEffect(() => {
-        setClickedLink(null)
-    }, [pathname])
+  useEffect(() => {
+    setClickedLink(null)
+  }, [pathname])
 
-    const handleLinkClick = (href: string) => {
-        if (href !== pathname) {
-            setClickedLink(href)
-        }
+  const handleLinkClick = (href: string) => {
+    if (href !== pathname) {
+      setClickedLink(href)
     }
+  }
 
-    const activeLink = clickedLink
-        ? links.find((link) => link.href === clickedLink)
-        : hoveredLink !== null
-            ? links.find((link) => link.href === hoveredLink)
-            : links.find((link) => link.href === pathname)
+  const activeLink = clickedLink
+    ? links.find(link => link.href === clickedLink)
+    : hoveredLink !== null
+      ? links.find(link => link.href === hoveredLink)
+      : links.find(link => link.href === pathname)
 
-    return (
-        <nav className="hidden lg:flex gap-8 text-lg font-semibold tracking-wider relative">
-            {links.map((link) => (
-                <Link
-                    key={link.href}
-                    href={link.href as Route}
-                    className="relative"
-                    onMouseEnter={() => setHoveredLink(link.href)}
-                    onMouseLeave={() => setHoveredLink(null)}
-                    onClick={() => handleLinkClick(link.href)}
-                >
-                    {link.label}
-                </Link>
-            ))}
+  return (
+    <nav className='hidden lg:flex gap-8 text-lg font-semibold tracking-wider relative'>
+      {links.map(link => (
+        <Link
+          key={link.href}
+          href={link.href as Route}
+          className='relative'
+          onMouseEnter={() => setHoveredLink(link.href)}
+          onMouseLeave={() => setHoveredLink(null)}
+          onClick={() => handleLinkClick(link.href)}
+        >
+          {link.label}
+        </Link>
+      ))}
 
-            <AnimatePresence>
-                {activeLink && (
-                    <motion.div
-                        className="absolute bottom-0 h-[2px] bg-white"
-                        initial={false}
-                        layoutId="nav-indicator"
-                        animate={{
-                            width: activeLink.width,
-                            x: links.findIndex((l) => l.href === activeLink.href) * 97,
-                            opacity: 1
-                        }}
-                        transition={{
-                            type: 'spring',
-                            stiffness: 350,
-                            damping: 22,
-                            mass: 0.5
-                        }}
-                    />
-                )}
-            </AnimatePresence>
-        </nav>
-    )
+      <AnimatePresence>
+        {activeLink && (
+          <motion.div
+            className='absolute bottom-0 h-[2px] bg-white'
+            initial={false}
+            layoutId='nav-indicator'
+            animate={{
+              width: activeLink.width,
+              x: links.findIndex(l => l.href === activeLink.href) * 97,
+              opacity: 1
+            }}
+            transition={{
+              type: 'spring',
+              stiffness: 350,
+              damping: 22,
+              mass: 0.5
+            }}
+          />
+        )}
+      </AnimatePresence>
+    </nav>
+  )
 }
