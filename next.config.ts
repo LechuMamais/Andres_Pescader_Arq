@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true, // Ayuda a detectar problemas en dev
-  swcMinify: true, // Usa SWC para minificar (más rápido que Terser)
 
   images: {
     domains: [], // 👈 Si después cargas imágenes externas, agregás dominios acá
@@ -9,7 +8,6 @@ const nextConfig = {
   },
 
   experimental: {
-    appDir: true, // Usamos la carpeta /app en Next.js 14+
     typedRoutes: true // Ayuda a detectar errores de rutas mal escritas
   },
 
@@ -20,7 +18,7 @@ const nextConfig = {
 
   typescript: {
     // Permite que el build pase aunque haya errores de TypeScript
-    ignoreBuildErrors: false // 👈 Mejor en false, para forzarte a corregir errores
+    ignoreBuildErrors: false
   },
 
   trailingSlash: false // URL limpias (sin / al final)
