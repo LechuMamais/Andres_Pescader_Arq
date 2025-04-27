@@ -1,0 +1,14 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /login
+Disallow: /register
+
+# Host
+Host: https://andres-pescader-arq.vercel.app/
+
+# Sitemaps
+Sitemap: https://andres-pescader-arq.vercel.app/sitemap.xml
+Sitemap: https://tudominio.vercel.app/sitemap.xml

@@ -19,7 +19,17 @@ const eslintConfig = [
       prettier: prettierPlugin
     },
     rules: {
-      'prettier/prettier': 'error'
+      'prettier/prettier': [
+        'error',
+        {
+          semi: false,
+          singleQuote: true,
+          tabWidth: 4,
+          trailingComma: 'none',
+          printWidth: 100,
+          endOfLine: 'auto'
+        }
+      ]
     }
   }
 ]
