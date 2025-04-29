@@ -1,11 +1,33 @@
-import { proyectos } from './data/proyectos'
-import { Proyecto } from './types'
 import ProjectCard from './components/project_card'
 
-export default function Home() {
+import { client } from './sanity/client'
+import { Proyecto } from './types'
+
+const PROYECTOS_QUERY = `*[
+  _type == "proyecto"
+]
+| order(orden asc)
+{
+  _id,
+  proy_id,
+  titulo,
+  imagen {
+    asset->{
+      url
+    }
+  },
+  orden
+}
+`
+
+const options = { next: { revalidate: 30 } }
+
+export default async function Home() {
+  const proyectos = await client.fetch<Proyecto[]>(PROYECTOS_QUERY, {}, options)
+  console.log(proyectos)
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-      {proyectos.map((proyecto: Proyecto) => (
+      {proyectos.map(proyecto => (
         <ProjectCard proyecto={proyecto} key={proyecto.proy_id} />
       ))}
     </div>

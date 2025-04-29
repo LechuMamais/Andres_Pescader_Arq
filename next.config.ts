@@ -3,7 +3,8 @@ const nextConfig = {
   reactStrictMode: true, // Ayuda a detectar problemas en dev
 
   images: {
-    domains: [], // 👈 Si después cargas imágenes externas, agregás dominios acá
+    remotePatterns: [new URL('https://cdn.sanity.io/**')],
+    domains: ['cdn.sanity.io'], // 👈 Si después cargas imágenes externas, agregás dominios acá
     formats: ['image/avif', 'image/webp'] // Optimizaciones modernas
   },
 

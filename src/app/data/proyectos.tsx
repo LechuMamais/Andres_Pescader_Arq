@@ -3,10 +3,11 @@ import { Proyecto } from '../types'
 
 export const proyectos: Proyecto[] = [
   {
+    _id: '1',
     proy_id: '1',
     titulo: 'GRUPO MCI',
     descripcion: 'GRUPO MCI',
-    imagen: '/images/proy_01/01.png',
+    imagen: { asset: { url: '/images/proy_01/01.png' } },
     categoria: 'oficinas',
     hashTags: ['#oficinas', '#diseño', '#interiorismo'],
     contenidoEspecifico: () => (

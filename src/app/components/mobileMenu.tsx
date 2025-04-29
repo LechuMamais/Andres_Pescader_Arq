@@ -76,12 +76,16 @@ export default function MobileMenu() {
             className='fixed inset-0 bg-black z-40 flex flex-col items-center justify-center gap-8 text-2xl'
           >
             <motion.div variants={itemVariants}>
-              <Link href='/' onClick={() => setIsOpen(false)} className='block py-2'>
+              <Link href='/' onClick={() => setIsOpen(false)} className='block py-2 tracking-wide'>
                 WORK
               </Link>
             </motion.div>
             <motion.div variants={itemVariants}>
-              <Link href='/contact' onClick={() => setIsOpen(false)} className='block py-2'>
+              <Link
+                href='/contact'
+                onClick={() => setIsOpen(false)}
+                className='block py-2 tracking-wide'
+              >
                 CONTACT
               </Link>
             </motion.div>

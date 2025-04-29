@@ -1,5 +1,10 @@
 @import 'tailwindcss';
 
+/* Evita que Tailwind purgue col-span dinámicos */
+@source inline("col-span-{1..12}");
+@source inline("md:col-span-{1..12}");
+@source inline("lg:col-span-{1..12}");
+
 :root {
   --background: #ffffff;
   --foreground: #171717;

@@ -39,7 +39,7 @@ export default function NavLinks() {
       : links.find(link => link.href === pathname)
 
   return (
-    <nav className='hidden lg:flex gap-8 text-lg font-semibold tracking-wider relative'>
+    <nav className='hidden lg:flex gap-8 text-xl font-light tracking-wider relative'>
       {links.map(link => (
         <Link
           key={link.href}

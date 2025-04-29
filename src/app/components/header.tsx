@@ -11,7 +11,7 @@ export default function Header() {
       <NavLinks />
 
       <Link href='/'>
-        <h1 className='sm:whitespace-nowrap text-base sm:text-xl md:text-2xl lg:text-3xl font-semibold tracking-wider justify-self-center'>
+        <h1 className='sm:whitespace-nowrap text-xl sm:text-2xl md:text-3xl lg:text-4xl font-[200] tracking-wider justify-self-center'>
           ANDRES PESCADER ARQ
         </h1>
       </Link>
