@@ -73,10 +73,14 @@ export default function MobileMenu() {
             animate='visible'
             exit='hidden'
             variants={menuVariants}
-            className='fixed inset-0 bg-black z-40 flex flex-col items-center justify-center gap-8 text-2xl'
+            className='fixed inset-0 bg-black z-40 flex flex-col items-center justify-center text-2xl'
           >
             <motion.div variants={itemVariants}>
-              <Link href='/' onClick={() => setIsOpen(false)} className='block py-2 tracking-wide'>
+              <Link
+                href='/'
+                onClick={() => setIsOpen(false)}
+                className='block py-6 px-8 tracking-wide'
+              >
                 WORK
               </Link>
             </motion.div>
@@ -84,7 +88,7 @@ export default function MobileMenu() {
               <Link
                 href='/contact'
                 onClick={() => setIsOpen(false)}
-                className='block py-2 tracking-wide'
+                className='block py-6 px-8 tracking-wide'
               >
                 CONTACT
               </Link>
