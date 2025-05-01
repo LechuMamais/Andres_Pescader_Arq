@@ -1,6 +1,27 @@
-import { PortableTextBlock } from '@portabletext/types'
-
 export type RoutePath = '/' | '/contact'
+
+type LayoutOptions = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+
+export type Contenido = {
+  _key: string
+  _type: 'image' | 'text' | 'video'
+  asset: {
+    _ref: string
+    _type: string
+  }
+}
+
+export type ContenidoEspecifico = {
+  _key: string
+  _type: string
+  tipo: 'image' | 'texto' | 'video'
+  contenido: Contenido[]
+  layout: {
+    mobile: LayoutOptions
+    tablet: LayoutOptions
+    desktop: LayoutOptions
+  }
+}
 
 export type Proyecto = {
   _id: string
@@ -25,7 +46,7 @@ export type Proyecto = {
     | 'cultural'
     | 'hospitalario'
   hashTags?: string[]
-  contenidoEspecifico: PortableTextBlock[]
+  contenidoEspecifico: ContenidoEspecifico[]
   orden?: number
   _createdAt?: string
   _updatedAt?: string

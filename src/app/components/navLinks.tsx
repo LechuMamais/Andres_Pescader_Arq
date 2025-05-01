@@ -12,16 +12,16 @@ interface NavLink {
 }
 
 const links: NavLink[] = [
-  { href: '/', label: 'WORK', width: '65px' },
-  { href: '/contact', label: 'CONTACT', width: '95px' }
+  { href: '/', label: 'WORK', width: '38px' },
+  { href: '/contact', label: 'CONTACT', width: '56px' }
 ]
 
 export default function NavLinks() {
   const pathname = usePathname()
-
   const [hoveredLink, setHoveredLink] = useState<string | null>(null)
   const [clickedLink, setClickedLink] = useState<string | null>(null)
 
+  // Reset clickedLink cuando cambia la ruta
   useEffect(() => {
     setClickedLink(null)
   }, [pathname])
@@ -32,11 +32,11 @@ export default function NavLinks() {
     }
   }
 
-  const activeLink = clickedLink
-    ? links.find(link => link.href === clickedLink)
-    : hoveredLink !== null
-      ? links.find(link => link.href === hoveredLink)
-      : links.find(link => link.href === pathname)
+  // Determinar cuál es el link activo, en orden de prioridad
+  const activeHref =
+    hoveredLink ?? clickedLink ?? (links.some(link => link.href === pathname) ? pathname : '/')
+
+  const activeLink = links.find(link => link.href === activeHref)
 
   return (
     <nav className='hidden lg:flex gap-8 text-xl font-light tracking-wider relative'>
@@ -61,7 +61,7 @@ export default function NavLinks() {
             layoutId='nav-indicator'
             animate={{
               width: activeLink.width,
-              x: links.findIndex(l => l.href === activeLink.href) * 97,
+              x: links.findIndex(link => link.href === activeLink.href) * 70,
               opacity: 1
             }}
             transition={{
