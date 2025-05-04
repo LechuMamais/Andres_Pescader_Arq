@@ -25,7 +25,7 @@ const options = { next: { revalidate: 30 } }
 export default async function Home() {
   const proyectos = await client.fetch<Proyecto[]>(PROYECTOS_QUERY, {}, options)
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+    <div className='grid grid-cols-1 md:grid-cols-2 gap-4 w-full'>
       {proyectos.map(proyecto => (
         <ProjectCard proyecto={proyecto} key={proyecto.proy_id} />
       ))}

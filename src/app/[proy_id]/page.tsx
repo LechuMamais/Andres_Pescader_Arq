@@ -42,7 +42,7 @@ export default async function ProyectoPage({ params }: { params: Params }) {
   }
 
   return (
-    <article itemScope itemType='https://schema.org/CreativeWork'>
+    <article itemScope itemType='https://schema.org/CreativeWork' className=' max-w-[1600px]'>
       <h2
         itemProp='name'
         className={`${smooch_sans.className} text-3xl text-center py-12 tracking-wide font-[400]`}
@@ -52,11 +52,11 @@ export default async function ProyectoPage({ params }: { params: Params }) {
         <span className='tracking-widest'> ]</span>
       </h2>
 
-      <h3 className='text-xl text-center py-4 tracking-wider'>{proyecto.descripcion}</h3>
+      <h3 className='text-xl text-center py-4 tracking-wider max-w-[1080px] mx-auto px-8 lg:px-4'>
+        {proyecto.descripcion}
+      </h3>
 
-      <div
-        className={`${assistant.className} mt-8 grid gap-4 md:gap-8 grid-cols-12 max-w-[1200px] mx-auto`}
-      >
+      <div className={`${assistant.className} mt-8 grid gap-4 md:gap-8 grid-cols-12 mx-auto`}>
         {proyecto.contenidoEspecifico.map((seccion: ContenidoEspecifico, index: number) => {
           const spanMobile = `col-span-${seccion.layout.mobile || 12}`
           const spanTablet = `md:col-span-${seccion.layout.tablet || 12}`
