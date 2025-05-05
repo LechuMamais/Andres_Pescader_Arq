@@ -1,24 +1,8 @@
 import ProjectCard from './components/project_card'
+import { PROYECTOS_QUERY } from './sanity/apiGroks'
 
 import { client } from './sanity/client'
 import { Proyecto } from './types'
-
-const PROYECTOS_QUERY = `*[
-  _type == "proyecto"
-]
-| order(orden asc)
-{
-  _id,
-  proy_id,
-  titulo,
-  imagen {
-    asset->{
-      url
-    }
-  },
-  orden
-}
-`
 
 const options = { next: { revalidate: 30 } }
 

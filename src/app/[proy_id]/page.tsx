@@ -6,32 +6,20 @@ import type { Metadata } from 'next'
 import { ContenidoEspecifico, Proyecto } from '../types'
 import { urlFor } from '../sanity/sanityImage'
 import { assistant, smooch_sans } from '../fonts'
+import Image from 'next/image'
+import { PROYECTO_QUERY, PROYECTO_QUERY_Metadata } from '../sanity/apiGroks'
 
 type Params = Promise<{ proy_id: string }>
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { proy_id } = await params
-  const proyecto = await client.fetch<Proyecto | null>(
-    `
-    *[_type == "proyecto" && proy_id == $proy_id][0] {
-      _id,
-      proy_id,
-      titulo,
-      descripcion
-    }
-  `,
-    { proy_id }
-  )
+  const proyecto = await client.fetch<Proyecto | null>(PROYECTO_QUERY_Metadata, { proy_id })
 
   return {
     title: proyecto?.titulo || 'Proyecto no encontrado',
     description: proyecto?.descripcion || 'Descripción no disponible'
   }
 }
-
-const PROYECTO_QUERY = `
-*[_type == "proyecto" && proy_id == $proy_id][0] 
-`
 
 export default async function ProyectoPage({ params }: { params: Params }) {
   const { proy_id } = await params
@@ -58,9 +46,13 @@ export default async function ProyectoPage({ params }: { params: Params }) {
 
       <div className={`${assistant.className} mt-8 grid gap-4 md:gap-8 grid-cols-12 mx-auto`}>
         {proyecto.contenidoEspecifico.map((seccion: ContenidoEspecifico, index: number) => {
-          const spanMobile = `col-span-${seccion.layout.mobile || 12}`
-          const spanTablet = `md:col-span-${seccion.layout.tablet || 12}`
-          const spanDesktop = `lg:col-span-${seccion.layout.desktop || 12}`
+          const mobileCols = seccion.layout.mobile || 12
+          const tabletCols = seccion.layout.tablet || 12
+          const desktopCols = seccion.layout.desktop || 12
+
+          const spanMobile = `col-span-${mobileCols}`
+          const spanTablet = `md:col-span-${tabletCols}`
+          const spanDesktop = `lg:col-span-${desktopCols}`
 
           const gridSpanClasses = `${spanMobile} ${spanTablet} ${spanDesktop}`
 
@@ -68,11 +60,22 @@ export default async function ProyectoPage({ params }: { params: Params }) {
             const imagen = seccion?.contenido?.[0]
             const src = imagen?.asset ? urlFor(imagen).url() : ''
 
+            const match = imagen?.asset?._ref?.match(/-(\d+)x(\d+)-/)
+            const width = match ? parseInt(match[1]) : 800
+            const height = match ? parseInt(match[2]) : 600
+
+            const mobileSize = `${(mobileCols / 12) * 100}vw`
+            const tabletSize = `${(tabletCols / 12) * 100}vw`
+            const desktopSize = `${(desktopCols / 12) * 100}vw`
+
             return (
-              <img
+              <Image
                 key={seccion._key}
                 src={src}
                 alt={proyecto.titulo + index || 'Imagen'}
+                width={width}
+                height={height}
+                sizes={`(max-width: 768px) ${mobileSize}, (max-width: 1024px) ${tabletSize}, ${desktopSize}`}
                 className={`w-full h-auto ${gridSpanClasses}`}
               />
             )
