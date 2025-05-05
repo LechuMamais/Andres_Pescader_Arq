@@ -4,10 +4,9 @@ import { PortableText } from '@portabletext/react'
 
 import type { Metadata } from 'next'
 import { ContenidoEspecifico, Proyecto } from '../types'
-import { urlFor } from '../sanity/sanityImage'
 import { assistant, smooch_sans } from '../fonts'
-import Image from 'next/image'
 import { PROYECTO_QUERY, PROYECTO_QUERY_Metadata } from '../sanity/apiGroks'
+import ImageSection from '../components/imageSection'
 
 type Params = Promise<{ proy_id: string }>
 
@@ -58,25 +57,16 @@ export default async function ProyectoPage({ params }: { params: Params }) {
 
           if (seccion.tipo === 'image') {
             const imagen = seccion?.contenido?.[0]
-            const src = imagen?.asset ? urlFor(imagen).url() : ''
-
-            const match = imagen?.asset?._ref?.match(/-(\d+)x(\d+)-/)
-            const width = match ? parseInt(match[1]) : 800
-            const height = match ? parseInt(match[2]) : 600
-
-            const mobileSize = `${(mobileCols / 12) * 100}vw`
-            const tabletSize = `${(tabletCols / 12) * 100}vw`
-            const desktopSize = `${(desktopCols / 12) * 100}vw`
-
             return (
-              <Image
+              <ImageSection
                 key={seccion._key}
-                src={src}
-                alt={proyecto.titulo + index || 'Imagen'}
-                width={width}
-                height={height}
-                sizes={`(max-width: 768px) ${mobileSize}, (max-width: 1024px) ${tabletSize}, ${desktopSize}`}
-                className={`w-full h-auto ${gridSpanClasses}`}
+                _key={seccion._key}
+                imagen={imagen}
+                mobileCols={mobileCols}
+                tabletCols={tabletCols}
+                desktopCols={desktopCols}
+                gridSpanClasses={gridSpanClasses}
+                alt={`${proyecto.titulo} ${index}`}
               />
             )
           }
