@@ -12,7 +12,7 @@ export default function Header() {
 
       <Link href='/'>
         <h1 className='sm:whitespace-nowrap text-xl sm:text-2xl md:text-3xl lg:text-4xl font-[200] tracking-wider justify-self-center'>
-          ANDRES PESCADER ARQ
+          ANDRES PESCADER [ARQ]
         </h1>
       </Link>
 

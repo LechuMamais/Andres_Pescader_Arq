@@ -22,7 +22,6 @@ export default function ImageSection({
   alt
 }: ImageSectionProps) {
   const src = imagen?.asset ? urlFor(imagen).url() : ''
-
   const match = imagen?.asset?._ref?.match(/-(\d+)x(\d+)-/)
   const width = match ? parseInt(match[1]) : 800
   const height = match ? parseInt(match[2]) : 600
@@ -32,14 +31,18 @@ export default function ImageSection({
   const desktopSize = `${(desktopCols / 12) * 100}vw`
 
   return (
-    <Image
-      key={_key}
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      sizes={`(max-width: 768px) ${mobileSize}, (max-width: 1024px) ${tabletSize}, ${desktopSize}`}
-      className={`w-full h-auto ${gridSpanClasses}`}
-    />
+    <div className={`relative overflow-hidden ${gridSpanClasses}`}>
+      <div className='absolute inset-0 -z-10 bg-gray-300 animate-pulse' />
+
+      <Image
+        key={_key}
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        sizes={`(max-width: 768px) ${mobileSize}, (max-width: 1024px) ${tabletSize}, ${desktopSize}`}
+        className='w-full h-auto'
+      />
+    </div>
   )
 }

@@ -10,7 +10,7 @@ interface GridContentProps {
 export function GridContent({ proyecto }: GridContentProps) {
   return (
     <div className={`${assistant.className} mt-8 grid gap-4 md:gap-8 grid-cols-12 mx-auto`}>
-      {proyecto.contenidoEspecifico.map((seccion: ContenidoEspecifico, index: number) => {
+      {proyecto.contenidoEspecifico?.map((seccion: ContenidoEspecifico, index: number) => {
         const mobileCols = seccion.layout.mobile || 12
         const tabletCols = seccion.layout.tablet || 12
         const desktopCols = seccion.layout.desktop || 12
