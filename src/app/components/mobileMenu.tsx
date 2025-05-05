@@ -2,6 +2,8 @@
 import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
+import { menuLinks } from '../data/menuLinks'
+import { Route } from 'next'
 
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false)
@@ -75,24 +77,17 @@ export default function MobileMenu() {
             variants={menuVariants}
             className='fixed inset-0 bg-black z-40 flex flex-col items-center justify-center text-2xl'
           >
-            <motion.div variants={itemVariants}>
-              <Link
-                href='/'
-                onClick={() => setIsOpen(false)}
-                className='block py-6 px-8 tracking-wide'
-              >
-                WORK
-              </Link>
-            </motion.div>
-            <motion.div variants={itemVariants}>
-              <Link
-                href='/contact'
-                onClick={() => setIsOpen(false)}
-                className='block py-6 px-8 tracking-wide'
-              >
-                CONTACT
-              </Link>
-            </motion.div>
+            {menuLinks.map(link => (
+              <motion.div variants={itemVariants} key={link.width + link.x}>
+                <Link
+                  href={link.href as Route}
+                  onClick={() => setIsOpen(false)}
+                  className='block py-6 px-8 tracking-wide'
+                >
+                  {link.label}
+                </Link>
+              </motion.div>
+            ))}
           </motion.div>
         )}
       </AnimatePresence>

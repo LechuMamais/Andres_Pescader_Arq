@@ -1,20 +1,11 @@
 'use client'
+
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { Route } from 'next'
-
-interface NavLink {
-  href: string
-  label: string
-  width: string
-}
-
-const links: NavLink[] = [
-  { href: '/', label: 'WORK', width: '38px' },
-  { href: '/contact', label: 'CONTACT', width: '56px' }
-]
+import { menuLinks } from '../data/menuLinks'
 
 export default function NavLinks() {
   const pathname = usePathname()
@@ -32,16 +23,16 @@ export default function NavLinks() {
   }
 
   const activeHref =
-    hoveredLink ?? clickedLink ?? (links.some(link => link.href === pathname) ? pathname : '/')
+    hoveredLink ?? clickedLink ?? (menuLinks.some(link => link.href === pathname) ? pathname : '/')
 
-  const activeLink = links.find(link => link.href === activeHref)
+  const activeLink = menuLinks.find(link => link.href === activeHref)
 
   return (
     <nav className='hidden lg:flex gap-8 text-xl font-light tracking-wider relative items-center'>
       {/* Logo SVG inline */}
       <img src='/images/logo.svg' alt='Logo' className='w-5 h-5 mr-[-12px] filter dark:invert' />
 
-      {links.map(link => (
+      {menuLinks.map(link => (
         <Link
           key={link.href}
           href={link.href as Route}
@@ -62,7 +53,7 @@ export default function NavLinks() {
             layoutId='nav-indicator'
             animate={{
               width: activeLink.width,
-              x: links.findIndex(link => link.href === activeLink.href) * 70 + 40,
+              x: activeLink.x + 40,
               opacity: 1
             }}
             transition={{
