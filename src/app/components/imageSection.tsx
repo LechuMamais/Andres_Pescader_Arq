@@ -1,13 +1,10 @@
 import Image from 'next/image'
 import { urlFor } from '../sanity/sanityImage'
+import { Contenido } from '../types'
 
 interface ImageSectionProps {
   _key: string
-  imagen: {
-    asset: {
-      _ref: string
-    }
-  }
+  imagen: Contenido
   mobileCols: number
   tabletCols: number
   desktopCols: number
