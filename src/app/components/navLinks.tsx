@@ -32,7 +32,7 @@ export default function NavLinks() {
     <nav className='hidden lg:flex gap-8 text-xl font-light tracking-wider relative items-center'>
       {/* Logo SVG inline */}
       <Image
-        src='/images/logo.svg'
+        src='/images/Logo.svg'
         alt='Logo'
         className='w-5 h-5 mr-[-12px] filter dark:invert'
         width={40}
