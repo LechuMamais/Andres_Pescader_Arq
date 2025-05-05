@@ -29,7 +29,10 @@ export default function ProjectCard({ proyecto }: Props) {
   }, [])
 
   return (
-    <Link href={`/${proyecto.proy_id}` as Route} className='flex flex-col items-center relative'>
+    <Link
+      href={`/${proyecto.proy_id}` as Route}
+      className='flex flex-col items-center h-[350px] relative'
+    >
       <motion.div
         className='w-full h-full relative overflow-hidden'
         onHoverStart={() => setIsHovered(true)}
