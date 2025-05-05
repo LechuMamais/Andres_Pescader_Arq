@@ -21,7 +21,6 @@ export default function NavLinks() {
   const [hoveredLink, setHoveredLink] = useState<string | null>(null)
   const [clickedLink, setClickedLink] = useState<string | null>(null)
 
-  // Reset clickedLink cuando cambia la ruta
   useEffect(() => {
     setClickedLink(null)
   }, [pathname])
@@ -32,14 +31,16 @@ export default function NavLinks() {
     }
   }
 
-  // Determinar cuál es el link activo, en orden de prioridad
   const activeHref =
     hoveredLink ?? clickedLink ?? (links.some(link => link.href === pathname) ? pathname : '/')
 
   const activeLink = links.find(link => link.href === activeHref)
 
   return (
-    <nav className='hidden lg:flex gap-8 text-xl font-light tracking-wider relative'>
+    <nav className='hidden lg:flex gap-8 text-xl font-light tracking-wider relative items-center'>
+      {/* Logo SVG inline */}
+      <img src='/images/logo.svg' alt='Logo' className='w-5 h-5 mr-[-12px] filter dark:invert' />
+
       {links.map(link => (
         <Link
           key={link.href}
@@ -61,7 +62,7 @@ export default function NavLinks() {
             layoutId='nav-indicator'
             animate={{
               width: activeLink.width,
-              x: links.findIndex(link => link.href === activeLink.href) * 70,
+              x: links.findIndex(link => link.href === activeLink.href) * 70 + 40,
               opacity: 1
             }}
             transition={{

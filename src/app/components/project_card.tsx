@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Route } from 'next'
 import { Proyecto } from '../types'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 interface Props {
   proyecto: Proyecto
@@ -13,12 +13,23 @@ interface Props {
 
 export default function ProjectCard({ proyecto }: Props) {
   const [isHovered, setIsHovered] = useState(false)
+  const [isMobileOrTablet, setIsMobileOrTablet] = useState(false)
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobileOrTablet(window.innerWidth < 1024) // Tailwind's `lg` breakpoint
+    }
+
+    checkIsMobile()
+    window.addEventListener('resize', checkIsMobile)
+
+    return () => {
+      window.removeEventListener('resize', checkIsMobile)
+    }
+  }, [])
 
   return (
-    <Link
-      href={`/${proyecto.proy_id}` as Route}
-      className='flex flex-col items-center h-[350px] relative'
-    >
+    <Link href={`/${proyecto.proy_id}` as Route} className='flex flex-col items-center relative'>
       <motion.div
         className='w-full h-full relative overflow-hidden'
         onHoverStart={() => setIsHovered(true)}
@@ -35,9 +46,16 @@ export default function ProjectCard({ proyecto }: Props) {
           width={900}
           height={600}
         />
+        {isMobileOrTablet && (
+          <div className='absolute bottom-0 left-0 w-full h-16 z-10 flex items-center justify-center backdrop-blur-[4px] bg-[rgba(0,0,0,0.25)]'>
+            <h3 className='text-2xl text-white font-semibold text-center px-4 tracking-wide z-20'>
+              {proyecto.titulo}
+            </h3>
+          </div>
+        )}
 
         <AnimatePresence>
-          {isHovered && (
+          {isHovered && !isMobileOrTablet && (
             <motion.h3
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
