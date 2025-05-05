@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { Route } from 'next'
 import { menuLinks } from '../data/menuLinks'
+import Image from 'next/image'
 
 export default function NavLinks() {
   const pathname = usePathname()
@@ -30,7 +31,13 @@ export default function NavLinks() {
   return (
     <nav className='hidden lg:flex gap-8 text-xl font-light tracking-wider relative items-center'>
       {/* Logo SVG inline */}
-      <img src='/images/logo.svg' alt='Logo' className='w-5 h-5 mr-[-12px] filter dark:invert' />
+      <Image
+        src='/images/logo.svg'
+        alt='Logo'
+        className='w-5 h-5 mr-[-12px] filter dark:invert'
+        width={40}
+        height={40}
+      />
 
       {menuLinks.map(link => (
         <Link
