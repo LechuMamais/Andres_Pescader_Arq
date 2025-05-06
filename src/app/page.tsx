@@ -9,7 +9,7 @@ export default async function Home() {
   const proyectos = await client.fetch<Proyecto[]>(PROYECTOS_QUERY, {}, options)
 
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 gap-4 w-full'>
+    <div className='grid grid-cols-1 md:grid-cols-2 gap-6 w-full'>
       {proyectos.map((proyecto, index) => (
         <ProjectCard proyecto={proyecto} key={proyecto.proy_id} index={index} />
       ))}

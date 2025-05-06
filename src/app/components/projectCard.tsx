@@ -31,11 +31,7 @@ export default function ProjectCard({ proyecto, key, index }: Props) {
   }, [])
 
   return (
-    <Link
-      href={`/${proyecto.proy_id}` as Route}
-      key={key}
-      className='flex flex-col items-center h-[350px] relative'
-    >
+    <Link href={`/${proyecto.proy_id}` as Route} key={key} className='relative w-full aspect-[2/1]'>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -56,8 +52,8 @@ export default function ProjectCard({ proyecto, key, index }: Props) {
           }}
           src={proyecto.imagen?.asset?.url || '/placeholder.jpg'}
           alt={proyecto.titulo}
-          width={900}
-          height={600}
+          width={760}
+          height={350}
         />
         {isMobileOrTablet && (
           <div className='absolute bottom-0 left-0 w-full h-16 z-10 flex items-center justify-center backdrop-blur-[4px] bg-[rgba(0,0,0,0.25)]'>
