@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import SubmitButton from './submitButton'
 import FloatingMessage from './floatingMessage'
+import Error from 'next/error'
 
 interface FormData {
   name: string
@@ -79,7 +80,7 @@ export default function ContactForm() {
   }
 
   const inputCommonStyles =
-    'w-full mb-4 md:mb-8 mt-2 px-3 py-3 md:px-6 md:py-4 bg-[#373737] rounded-xs focus:outline-none focus:ring-0 focus:bg-[#4e4e4e] focus:border-transparent transition-colors duration-120'
+    'w-full mb-4 md:mb-8 mt-2 p-3 md:px-6 md:py-4 bg-gray-200 dark:bg-[#373737] rounded-xs focus:outline-none focus:ring-0 focus:bg-gray-300 dark:focus:bg-[#4e4e4e]  focus:border-transparent transition-colors duration-120'
 
   return (
     <>
