@@ -3,6 +3,7 @@ import { useState } from 'react'
 import SubmitButton from './submitButton'
 import FloatingMessage from './floatingMessage'
 import Error from 'next/error'
+import { TextInput } from './textInput'
 
 interface FormData {
   name: string
@@ -39,7 +40,6 @@ export default function ContactForm() {
       return
     }
 
-    // Validar que el nombre no esté vacío después de trim()
     if (!formData.name.trim()) {
       setError('El nombre no puede estar vacío')
       return
@@ -79,9 +79,6 @@ export default function ContactForm() {
     }
   }
 
-  const inputCommonStyles =
-    'w-full mb-4 md:mb-8 mt-2 p-3 md:px-6 md:py-4 bg-gray-200 dark:bg-[#373737] rounded-xs focus:outline-none focus:ring-0 focus:bg-gray-300 dark:focus:bg-[#4e4e4e]  focus:border-transparent transition-colors duration-120'
-
   return (
     <>
       <form onSubmit={handleSubmit} className='max-w-[500px] mx-auto mb-12 px-4'>
@@ -89,37 +86,30 @@ export default function ContactForm() {
           CONTACTO
         </h2>
 
-        <label htmlFor='name'>Name*</label>
-        <input
-          type='text'
+        <TextInput
+          label='Nombre'
           name='name'
-          id='name'
           value={formData.name}
           onChange={handleChange}
-          placeholder='Your Name...'
-          className={inputCommonStyles}
+          placeholder='Tu nombre...'
         />
 
-        <label htmlFor='email'>Email*</label>
-        <input
-          type='email'
+        <TextInput
+          label='Email'
           name='email'
-          id='email'
+          type='email'
           value={formData.email}
           onChange={handleChange}
-          placeholder='Your email...'
-          className={inputCommonStyles}
+          placeholder='Tu email...'
         />
 
-        <label htmlFor='message'>Message*</label>
-        <textarea
+        <TextInput
+          label='Mensaje'
           name='message'
-          id='message'
-          rows={5}
           value={formData.message}
           onChange={handleChange}
-          placeholder='Your Message...'
-          className={inputCommonStyles}
+          placeholder='Tu mensaje...'
+          textarea
         />
 
         <div className='h-18 sm:h-12'>{error && <p className='text-red-600'>{error}</p>}</div>
