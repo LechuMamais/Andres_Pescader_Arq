@@ -5,6 +5,7 @@ import { PROYECTO_QUERY, PROYECTO_QUERY_Metadata } from '../sanity/apiGroks'
 import ProjectTitle from '../components/projectTitle'
 import { GridContent } from '../components/gridContent'
 import { Proyecto } from '../types'
+import { portableTextToPlainText } from '../sanity/portableTextToPlainText'
 
 type Params = Promise<{ proy_id: string }>
 
@@ -14,7 +15,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 
   return {
     title: proyecto?.titulo || 'Proyecto no encontrado',
-    description: proyecto?.descripcion || 'Descripción no disponible'
+    description: portableTextToPlainText(proyecto?.descripcion) || 'Descripción del proyecto'
   }
 }
 

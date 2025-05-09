@@ -1,9 +1,12 @@
+import { PortableText, PortableTextBlock } from 'next-sanity'
+
 interface ProjectTitleProps {
   titulo: string
-  descripcion: string
+  descripcion: PortableTextBlock[]
 }
 
 export default function ProjectTitle({ titulo, descripcion }: ProjectTitleProps) {
+  console.log(descripcion)
   return (
     <>
       <h2
@@ -15,7 +18,7 @@ export default function ProjectTitle({ titulo, descripcion }: ProjectTitleProps)
         <span className='tracking-widest'> ]</span>
       </h2>
       <h3 className='text-xl text-center py-4 tracking-wider max-w-[1080px] mx-auto px-8 lg:px-4'>
-        {descripcion}
+        <PortableText value={descripcion} />
       </h3>
     </>
   )
