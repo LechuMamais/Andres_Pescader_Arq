@@ -55,7 +55,7 @@ export default function NavLinks() {
       <AnimatePresence>
         {activeLink && (
           <motion.div
-            className='absolute bottom-0 h-[2px] bg-white'
+            className='absolute bottom-0 h-[1px] bg-black dark:bg-white'
             initial={false}
             layoutId='nav-indicator'
             animate={{
