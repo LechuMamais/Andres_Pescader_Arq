@@ -41,26 +41,26 @@ export default function MobileMenu() {
             animate={isOpen ? 'open' : 'closed'}
           >
             <motion.span
-              className='h-0.5 w-full bg-white block'
+              className='h-0.5 w-full bg-black dark:bg-white block'
               variants={{
                 closed: { rotate: 0, y: 0 },
-                open: { rotate: 45, y: 6 }
+                open: { rotate: 45, y: 6, backgroundColor: 'white' }
               }}
               transition={{ duration: 0.3, ease: 'easeInOut' }}
             />
             <motion.span
-              className='h-0.5 w-full bg-white block'
+              className='h-0.5 w-full bg-black dark:bg-white block'
               variants={{
                 closed: { opacity: 1 },
-                open: { opacity: 0 }
+                open: { opacity: 0, backgroundColor: 'white' }
               }}
               transition={{ duration: 0.2, ease: 'easeInOut' }}
             />
             <motion.span
-              className='h-0.5 w-full bg-white block'
+              className='h-0.5 w-full bg-black dark:bg-white block'
               variants={{
                 closed: { rotate: 0, y: 0 },
-                open: { rotate: -45, y: -6 }
+                open: { rotate: -45, y: -6, backgroundColor: 'white' }
               }}
               transition={{ duration: 0.3, ease: 'easeInOut' }}
             />
@@ -82,7 +82,7 @@ export default function MobileMenu() {
                 <Link
                   href={link.href as Route}
                   onClick={() => setIsOpen(false)}
-                  className='block py-6 px-8 tracking-wide'
+                  className='block py-6 px-8 tracking-wide text-white'
                 >
                   {link.label}
                 </Link>
