@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Route } from 'next'
 import { Proyecto } from '../types'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 interface Props {
   proyecto: Proyecto
@@ -15,20 +15,6 @@ interface Props {
 
 export default function ProjectCard({ proyecto, key, index }: Props) {
   const [isHovered, setIsHovered] = useState(false)
-  const [isMobileOrTablet, setIsMobileOrTablet] = useState(false)
-
-  useEffect(() => {
-    const checkIsMobile = () => {
-      setIsMobileOrTablet(window.innerWidth < 1024) // Tailwind's `lg` breakpoint
-    }
-
-    checkIsMobile()
-    window.addEventListener('resize', checkIsMobile)
-
-    return () => {
-      window.removeEventListener('resize', checkIsMobile)
-    }
-  }, [])
 
   return (
     <Link href={`/${proyecto.proy_id}` as Route} key={key} className='relative w-full aspect-[2/1]'>
@@ -36,7 +22,7 @@ export default function ProjectCard({ proyecto, key, index }: Props) {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
-          delay: index * 0.15, // animación secuencial
+          delay: index * 0.15,
           duration: 0.5,
           ease: 'easeOut'
         }}
@@ -55,22 +41,23 @@ export default function ProjectCard({ proyecto, key, index }: Props) {
           width={760}
           height={350}
         />
-        {isMobileOrTablet && (
-          <div className='absolute bottom-0 left-0 w-full h-16 z-10 flex items-center justify-center backdrop-blur-[4px] bg-[rgba(0,0,0,0.25)]'>
-            <h3 className='text-2xl text-white font-semibold text-center px-4 tracking-wide z-20'>
-              {proyecto.titulo}
-            </h3>
-          </div>
-        )}
 
+        {/* Versión móvil/tablet - siempre visible en pantallas pequeñas */}
+        <div className='lg:hidden absolute bottom-0 left-0 w-full h-10 z-10 flex items-center justify-center backdrop-blur-[4px] bg-[rgba(0,0,0,0.25)]'>
+          <h3 className='text-2xl text-white font-semibold text-center px-4 tracking-wide z-20'>
+            {proyecto.titulo}
+          </h3>
+        </div>
+
+        {/* Versión desktop - solo visible en hover en pantallas grandes */}
         <AnimatePresence>
-          {isHovered && !isMobileOrTablet && (
+          {isHovered && (
             <motion.h3
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.3, ease: 'easeOut' }}
-              className='absolute bottom-1/2 left-1/2 transform -translate-x-1/2 translate-y-1/2 text-2xl text-white font-semibold text-center px-4 tracking-wide z-20'
+              className='hidden lg:block absolute bottom-1/2 left-1/2 transform -translate-x-1/2 translate-y-1/2 text-2xl text-white font-semibold text-center px-4 tracking-wide z-20'
             >
               {proyecto.titulo}
             </motion.h3>
