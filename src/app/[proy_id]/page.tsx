@@ -17,7 +17,7 @@ type Params = Promise<{ proy_id: string }>
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { proy_id } = await params
   const data = await client.fetch(PROYECTO_QUERY_Metadata, { proy_id })
-  const proyecto = data?.actual as Proyecto | null
+  const proyecto = data as Proyecto | null
 
   return {
     title: proyecto?.titulo || 'Proyecto no encontrado',
