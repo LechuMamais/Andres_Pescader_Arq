@@ -29,18 +29,17 @@ export default async function ProyectoPage({ params }: { params: Params }) {
   const { proy_id } = await params
 
   // Primero buscamos el proyecto actual para obtener su `orden`, luego lo usamos para buscar el anterior y siguiente
-  const actualProyecto = await client.fetch(PROYECTO_QUERY_BASE, { proy_id })
+  const proyecto = await client.fetch(PROYECTO_QUERY_BASE, { proy_id })
 
-  if (!actualProyecto) {
+  if (!proyecto) {
     notFound()
   }
 
   const data = await client.fetch(PROYECTO_QUERY_WITH_NAV, {
     proy_id,
-    orden: actualProyecto.orden
+    orden: proyecto.orden
   })
 
-  const proyecto = actualProyecto
   const anterior = data?.anterior
   const siguiente = data?.siguiente
 
