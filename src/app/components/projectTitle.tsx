@@ -6,7 +6,6 @@ interface ProjectTitleProps {
 }
 
 export default function ProjectTitle({ titulo, descripcion }: ProjectTitleProps) {
-  console.log(descripcion)
   return (
     <>
       <h2

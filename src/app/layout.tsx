@@ -31,7 +31,7 @@ export default function RootLayout({
         className={`${smooch_sans.className} antialiased min-h-[120svh] w-[100svw] bg-black text-white flex flex-col`}
       >
         <Header />
-        <main className='flex justify-center w-full max-w-[1600px] h-full pb-16 mx-auto lg:px-8 flex-1 mb-24'>
+        <main className='flex justify-center w-full max-w-[1600px] h-full pb-16 mx-auto lg:px-8 flex-1 mb-16'>
           {children}
         </main>
         <Footer />
