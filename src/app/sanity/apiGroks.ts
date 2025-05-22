@@ -35,3 +35,5 @@ export const PROYECTO_QUERY_Metadata = `
       descripcion
     }
   `
+
+export const ABOUT_QUERY = `*[_type == "about"][0]`

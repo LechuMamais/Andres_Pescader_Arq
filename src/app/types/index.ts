@@ -5,7 +5,7 @@ type LayoutOptions = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 export type RoutePath = '/' | '/contact'
 
 export type Contenido = {
-  _key: string
+  _key?: string
   _type: 'image' | 'text' | 'video'
   asset: {
     _ref: string
