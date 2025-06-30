@@ -4,8 +4,8 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { PortableText } from '@portabletext/react'
-import type { AboutData } from '../types/about'
-import { urlFor } from '../sanity/sanityImage'
+import type { AboutData } from '../../types/about'
+import { urlFor } from '../../sanity/sanityImage'
 
 export default function AboutClient({ about }: { about: AboutData }) {
   const [imageLoaded, setImageLoaded] = useState(false)

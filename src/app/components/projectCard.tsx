@@ -6,6 +6,7 @@ import { Route } from 'next'
 import { Proyecto } from '../types'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
+import { useLocale } from 'next-intl'
 
 interface Props {
   proyecto: Proyecto
@@ -15,9 +16,14 @@ interface Props {
 
 export default function ProjectCard({ proyecto, key, index }: Props) {
   const [isHovered, setIsHovered] = useState(false)
+  const locale = useLocale()
 
   return (
-    <Link href={`/${proyecto.proy_id}` as Route} key={key} className='relative w-full aspect-[2/1]'>
+    <Link
+      href={`/${locale}/${proyecto.proy_id}` as Route}
+      key={key}
+      className='relative w-full aspect-[2/1]'
+    >
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}

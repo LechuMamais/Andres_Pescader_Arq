@@ -1,0 +1,20 @@
+{
+    "Contact": {
+        "title": "CONTACT",
+        "nameLabel": "Name",
+        "namePlaceholder": "Your name...",
+        "emailLabel": "Email",
+        "emailPlaceholder": "Your email...",
+        "messageLabel": "Message",
+        "messagePlaceholder": "Your message...",
+        "sendButton": "Send",
+        "errorRequired": "All fields are required.",
+        "errorName": "Name must not be empty.",
+        "errorEmail": "Please enter a valid email.",
+        "success": "Your message was sent successfully.",
+        "errorSend": "There was an error sending your message."
+    },
+    "Footer": {
+        "developedBy": "Developed by "
+    }
+}

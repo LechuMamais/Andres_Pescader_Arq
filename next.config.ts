@@ -1,28 +1,28 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true, // Ayuda a detectar problemas en dev
+const withNextIntl = require('next-intl/plugin')({
+  i18n: {
+    locales: ['es', 'en'],
+    defaultLocale: 'es',
+    localeDetection: false
+  }
+})
 
+const nextConfig = {
+  reactStrictMode: true,
   images: {
     remotePatterns: [new URL('https://cdn.sanity.io/**')],
-    domains: ['cdn.sanity.io'], // 👈 Si después cargas imágenes externas, agregás dominios acá
-    formats: ['image/avif', 'image/webp'] // Optimizaciones modernas
+    domains: ['cdn.sanity.io'],
+    formats: ['image/avif', 'image/webp']
   },
-
   experimental: {
-    typedRoutes: true // Ayuda a detectar errores de rutas mal escritas
+    typedRoutes: true
   },
-
   eslint: {
-    // Permite que el build pase incluso si hay errores de ESLint
     ignoreDuringBuilds: true
   },
-
   typescript: {
-    // Permite que el build pase aunque haya errores de TypeScript
     ignoreBuildErrors: false
   },
-
-  trailingSlash: false // URL limpias (sin / al final)
+  trailingSlash: false
 }
 
-export default nextConfig
+module.exports = withNextIntl(nextConfig)

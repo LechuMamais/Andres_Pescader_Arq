@@ -5,12 +5,12 @@ import {
   PROYECTO_QUERY_BASE,
   PROYECTO_QUERY_Metadata,
   PROYECTO_QUERY_WITH_NAV
-} from '../sanity/apiGroks'
-import ProjectTitle from '../components/projectTitle'
-import { GridContent } from '../components/gridContent'
-import { Proyecto } from '../types'
-import { portableTextToPlainText } from '../sanity/portableTextToPlainText'
-import ProjectsNavigationArrows from '../components/projectsNavigationArrows'
+} from '../../sanity/apiGroks'
+import ProjectTitle from '../../components/projectTitle'
+import { GridContent } from '../../components/gridContent'
+import { Proyecto } from '../../types'
+import { portableTextToPlainText } from '../../sanity/portableTextToPlainText'
+import ProjectsNavigationArrows from '../../components/projectsNavigationArrows'
 
 type Params = Promise<{ proy_id: string }>
 
