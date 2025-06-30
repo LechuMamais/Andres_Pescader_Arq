@@ -7,11 +7,14 @@ import { useState, useEffect } from 'react'
 import { Route } from 'next'
 import { menuLinks } from '../data/menuLinks'
 import Image from 'next/image'
+import { useLocale } from 'next-intl'
 
 export default function NavLinks() {
-  const pathname = usePathname()
+  const fullPathname = usePathname().split('/')
+  const pathname = '/' + fullPathname[fullPathname.length - 1] || '/'
   const [hoveredLink, setHoveredLink] = useState<string | null>(null)
   const [clickedLink, setClickedLink] = useState<string | null>(null)
+  const locale = useLocale()
 
   useEffect(() => {
     setClickedLink(null)
@@ -42,7 +45,7 @@ export default function NavLinks() {
       {menuLinks.map(link => (
         <Link
           key={link.href}
-          href={link.href as Route}
+          href={`/${locale}${link.href === '/' ? '' : link.href}` as Route}
           className='relative'
           onMouseEnter={() => setHoveredLink(link.href)}
           onMouseLeave={() => setHoveredLink(null)}

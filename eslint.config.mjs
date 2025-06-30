@@ -14,7 +14,7 @@ const compat = new FlatCompat({
 /** @type {import("eslint").Linter.FlatConfigItem[]} */
 const eslintConfig = [
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
-  prettierPluginRecommended, // <-- agrega Prettier como última extensión
+  prettierPluginRecommended,
   {
     files: ['**/*.{js,ts,jsx,tsx}'],
     plugins: {
@@ -29,6 +29,13 @@ const eslintConfig = [
       ],
       'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.jsx'] }],
       'react/react-in-jsx-scope': 'off'
+    }
+  },
+  // 👇 Este bloque desactiva la regla solo para next.config.js
+  {
+    files: ['next.config.js'],
+    rules: {
+      '@typescript-eslint/no-require-imports': 'off'
     }
   }
 ]

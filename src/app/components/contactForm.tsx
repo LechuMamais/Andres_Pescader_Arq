@@ -1,8 +1,8 @@
 'use client'
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import SubmitButton from './submitButton'
 import FloatingMessage from './floatingMessage'
-import Error from 'next/error'
 import { TextInput } from './textInput'
 
 interface FormData {
@@ -12,22 +12,15 @@ interface FormData {
 }
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    message: ''
-  })
-
+  const t = useTranslations('Contact')
+  const [formData, setFormData] = useState<FormData>({ name: '', email: '', message: '' })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [status, setStatus] = useState<'success' | 'error' | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
+    setFormData(prev => ({ ...prev, [name]: value }))
     setError(null)
     setStatus(null)
   }
@@ -36,18 +29,16 @@ export default function ContactForm() {
     e.preventDefault()
 
     if (!formData.name || !formData.email || !formData.message) {
-      setError('Todos los campos son obligatorios.')
+      setError(t('errorRequired'))
       return
     }
-
     if (!formData.name.trim()) {
-      setError('El nombre no puede estar vacío')
+      setError(t('errorName'))
       return
     }
-
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(formData.email) || formData.email.length > 254) {
-      setError('Por favor ingresa un email válido')
+      setError(t('errorEmail'))
       return
     }
 
@@ -58,22 +49,20 @@ export default function ContactForm() {
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       })
 
       if (!res.ok) {
         const data = await res.json()
-        throw new Error(data.message || 'Error al enviar el mensaje')
+        throw new Error(data.message || t('errorSend'))
       }
 
       setFormData({ name: '', email: '', message: '' })
       setStatus('success')
     } catch (err: any) {
       setStatus('error')
-      setError(err.message || 'Hubo un error al enviar el mensaje.')
+      setError(err.message || t('errorSend'))
     } finally {
       setIsSubmitting(false)
     }
@@ -83,56 +72,47 @@ export default function ContactForm() {
     <>
       <form onSubmit={handleSubmit} className='max-w-[500px] mx-auto mb-12 px-4'>
         <h2 className='py-6 text-xl text-center lg:text-transparent mx-auto w-full tracking-wider font-semibold'>
-          CONTACTO
+          {t('title')}
         </h2>
 
         <TextInput
-          label='Nombre'
+          label={t('nameLabel')}
           name='name'
           value={formData.name}
           onChange={handleChange}
-          placeholder='Tu nombre...'
+          placeholder={t('namePlaceholder')}
         />
 
         <TextInput
-          label='Email'
+          label={t('emailLabel')}
           name='email'
           type='email'
           value={formData.email}
           onChange={handleChange}
-          placeholder='Tu email...'
+          placeholder={t('emailPlaceholder')}
         />
 
         <TextInput
-          label='Mensaje'
+          label={t('messageLabel')}
           name='message'
           value={formData.message}
           onChange={handleChange}
-          placeholder='Tu mensaje...'
+          placeholder={t('messagePlaceholder')}
           textarea
         />
 
         <div className='h-18 sm:h-12'>{error && <p className='text-red-600'>{error}</p>}</div>
 
         <div className='flex flex-row-reverse'>
-          <SubmitButton text='Enviar' isSubmitting={isSubmitting} />
+          <SubmitButton text={t('sendButton')} isSubmitting={isSubmitting} />
         </div>
       </form>
 
       {status === 'success' && (
-        <FloatingMessage
-          message='Tu mensaje fue enviado correctamente.'
-          type='success'
-          onClose={() => setStatus(null)}
-        />
+        <FloatingMessage message={t('success')} type='success' onClose={() => setStatus(null)} />
       )}
-
       {status === 'error' && !error && (
-        <FloatingMessage
-          message='Hubo un error al enviar tu mensaje.'
-          type='error'
-          onClose={() => setStatus(null)}
-        />
+        <FloatingMessage message={t('errorSend')} type='error' onClose={() => setStatus(null)} />
       )}
     </>
   )

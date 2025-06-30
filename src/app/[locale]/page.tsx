@@ -1,7 +1,7 @@
-import ProjectCard from './components/projectCard'
-import { PROYECTOS_QUERY } from './sanity/apiGroks'
-import { client } from './sanity/client'
-import { Proyecto } from './types'
+import ProjectCard from '../components/projectCard'
+import { PROYECTOS_QUERY } from '../sanity/apiGroks'
+import { client } from '../sanity/client'
+import { Proyecto } from '../types'
 
 const options = { next: { revalidate: 30 } }
 
