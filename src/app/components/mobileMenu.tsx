@@ -4,9 +4,11 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
 import { menuLinks } from '../data/menuLinks'
 import { Route } from 'next'
+import { useLocale } from 'next-intl'
 
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false)
+  const locale = useLocale()
 
   const menuVariants = {
     hidden: {
@@ -80,7 +82,7 @@ export default function MobileMenu() {
             {menuLinks.map(link => (
               <motion.div variants={itemVariants} key={link.width + link.x}>
                 <Link
-                  href={link.href as Route}
+                  href={`/${locale}${link.href === '/' ? '' : link.href}` as Route}
                   onClick={() => setIsOpen(false)}
                   className='block py-6 px-8 tracking-wide text-white'
                 >
