@@ -4,7 +4,7 @@ import AboutClient from './AboutClient'
 
 type PageProps = {
   params: {
-    locale: string
+    locale: Promise<any>
   }
 }
 
