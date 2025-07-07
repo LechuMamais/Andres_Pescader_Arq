@@ -2,7 +2,7 @@ import { client } from '@/app/sanity/client'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import {
-  PROYECTO_QUERY_BASE,
+  getProyectoQueryBase,
   PROYECTO_QUERY_Metadata,
   PROYECTO_QUERY_WITH_NAV
 } from '../../sanity/apiGroks'
@@ -12,7 +12,7 @@ import { Proyecto } from '../../types'
 import { portableTextToPlainText } from '../../sanity/portableTextToPlainText'
 import ProjectsNavigationArrows from '../../components/projectsNavigationArrows'
 
-type Params = Promise<{ proy_id: string }>
+type Params = Promise<{ proy_id: string; locale: 'es' | 'en' }>
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { proy_id } = await params
@@ -26,10 +26,10 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 }
 
 export default async function ProyectoPage({ params }: { params: Params }) {
-  const { proy_id } = await params
+  const { proy_id, locale } = await params
 
   // Primero buscamos el proyecto actual para obtener su `orden`, luego lo usamos para buscar el anterior y siguiente
-  const proyecto = await client.fetch(PROYECTO_QUERY_BASE, { proy_id })
+  const proyecto = await client.fetch(getProyectoQueryBase(locale), { proy_id })
 
   if (!proyecto) {
     notFound()
