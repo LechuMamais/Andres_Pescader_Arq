@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function ProyectoPage({ params }: PageProps) {
-  const { proy_id, locale } = await params
+  const { proy_id, locale } = params
   const lang = locale === 'en' ? 'en' : 'es'
 
   const proyecto = await client.fetch(getProyectoQueryBase(lang), { proy_id })
