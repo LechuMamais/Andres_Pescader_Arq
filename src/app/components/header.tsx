@@ -3,6 +3,7 @@ import Link from 'next/link'
 import NavLinks from './navLinks'
 import MobileMenu from './mobileMenu'
 import { useLocale } from 'next-intl'
+import LangSelector from './langSelector'
 
 export default function Header() {
   const locale = useLocale()
@@ -20,7 +21,9 @@ export default function Header() {
 
       <MobileMenu />
 
-      <div className='hidden lg:block'></div>
+      <div className='hidden lg:block justify-self-end'>
+        <LangSelector isMobile={false} />
+      </div>
     </header>
   )
 }

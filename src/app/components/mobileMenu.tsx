@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { menuLinks } from '../data/menuLinks'
 import { Route } from 'next'
 import { useLocale } from 'next-intl'
+import LangSelector from './langSelector'
 
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false)
@@ -79,6 +80,12 @@ export default function MobileMenu() {
             variants={menuVariants}
             className='fixed inset-0 bg-black z-40 flex flex-col items-center justify-center text-2xl'
           >
+            <motion.div
+              variants={itemVariants}
+              className='mt-8 absolute top-0 left-0 px-4 py-2 md:py-10'
+            >
+              <LangSelector isMobile={true} />
+            </motion.div>
             {menuLinks.map(link => (
               <motion.div variants={itemVariants} key={link.width + link.x}>
                 <Link
