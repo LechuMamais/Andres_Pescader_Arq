@@ -8,7 +8,8 @@ type Props = {
   }
 }
 
-export default async function About({ params: { locale } }: Props) {
+export default async function About({ params }: Props) {
+  const { locale } = await params
   const lang = locale === 'en' ? 'en' : 'es' // Default to Spanish if locale is not recognized
   const about = await client.fetch(getAboutQuery(lang))
 
