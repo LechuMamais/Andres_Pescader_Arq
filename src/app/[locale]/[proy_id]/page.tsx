@@ -12,9 +12,14 @@ import { Proyecto } from '../../types'
 import { portableTextToPlainText } from '../../sanity/portableTextToPlainText'
 import ProjectsNavigationArrows from '../../components/projectsNavigationArrows'
 
-type Params = { proy_id: string; locale: string }
+type PageProps = {
+  params: {
+    locale: string
+    proy_id: string
+  }
+}
 
-export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { proy_id } = await params
   const data = await client.fetch(PROYECTO_QUERY_Metadata, { proy_id })
   const proyecto = data as Proyecto | null
@@ -25,7 +30,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   }
 }
 
-export default async function ProyectoPage({ params }: { params: Params }) {
+export default async function ProyectoPage({ params }: PageProps) {
   const { proy_id, locale } = await params
   const lang = locale === 'en' ? 'en' : 'es'
 

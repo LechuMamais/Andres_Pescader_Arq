@@ -2,15 +2,16 @@ import { client } from '../../sanity/client'
 import { getAboutQuery } from '../../sanity/apiGroks'
 import AboutClient from './AboutClient'
 
-type Props = {
+type PageProps = {
   params: {
     locale: string
   }
 }
 
-export default async function About({ params }: Props) {
-  const { locale } = await params
-  const lang = locale === 'en' ? 'en' : 'es' // Default to Spanish if locale is not recognized
+export default async function About({ params }: PageProps) {
+  const { locale } = params
+  const lang = locale === 'en' ? 'en' : 'es'
+
   const about = await client.fetch(getAboutQuery(lang))
 
   const normalizedAbout = {
