@@ -11,16 +11,10 @@ import { GridContent } from '../../components/gridContent'
 import { Proyecto } from '../../types'
 import { portableTextToPlainText } from '../../sanity/portableTextToPlainText'
 import ProjectsNavigationArrows from '../../components/projectsNavigationArrows'
-
-type PageProps = {
-  params: {
-    locale: string | Promise<any>
-    proy_id: string | Promise<any>
-  }
-}
+import { PageProps } from '../../../../.next/types/app/layout'
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { proy_id } = params
+  const { proy_id } = await params
   const data = await client.fetch(PROYECTO_QUERY_Metadata, { proy_id })
   const proyecto = data as Proyecto | null
 
@@ -31,7 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function ProyectoPage({ params }: PageProps) {
-  const { proy_id, locale } = params
+  const { proy_id, locale } = await params
   const lang = locale === 'en' ? 'en' : 'es'
 
   const proyecto = await client.fetch(getProyectoQueryBase(lang), { proy_id })

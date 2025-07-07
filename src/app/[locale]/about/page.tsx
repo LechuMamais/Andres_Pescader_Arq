@@ -1,15 +1,10 @@
 import { client } from '../../sanity/client'
 import { getAboutQuery } from '../../sanity/apiGroks'
 import AboutClient from './AboutClient'
-
-type PageProps = {
-  params: {
-    locale: string | Promise<any>
-  }
-}
+import { PageProps } from '../../../../.next/types/app/layout'
 
 export default async function Page({ params }: PageProps) {
-  const { locale } = params
+  const { locale } = await params
   const lang = locale === 'en' ? 'en' : 'es'
 
   const about = await client.fetch(getAboutQuery(lang))
