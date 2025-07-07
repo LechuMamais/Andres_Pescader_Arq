@@ -8,7 +8,7 @@ type PageProps = {
   }
 }
 
-export default async function About({ params }: PageProps) {
+export default async function Page({ params }: PageProps) {
   const { locale } = params
   const lang = locale === 'en' ? 'en' : 'es'
 

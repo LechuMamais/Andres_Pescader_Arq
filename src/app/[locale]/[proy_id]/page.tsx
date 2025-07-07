@@ -20,7 +20,7 @@ type PageProps = {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { proy_id } = await params
+  const { proy_id } = params
   const data = await client.fetch(PROYECTO_QUERY_Metadata, { proy_id })
   const proyecto = data as Proyecto | null
 
