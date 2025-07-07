@@ -19,7 +19,7 @@ export default function LangSelector({ isMobile = false }: LangSelectorProps) {
 
   const switchLocale = (locale: string) => {
     const newPath = `/${locale}${pathname.replace(/^\/(en|es)/, '')}`
-    router.push(newPath)
+    router.push(newPath as any)
     setOpen(false)
   }
 
