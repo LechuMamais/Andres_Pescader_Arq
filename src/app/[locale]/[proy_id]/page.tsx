@@ -14,8 +14,8 @@ import ProjectsNavigationArrows from '../../components/projectsNavigationArrows'
 
 type PageProps = {
   params: {
-    locale: Promise<any>
-    proy_id: Promise<any>
+    locale: string | Promise<any>
+    proy_id: string | Promise<any>
   }
 }
 
