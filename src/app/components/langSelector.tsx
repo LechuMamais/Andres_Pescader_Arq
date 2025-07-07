@@ -42,7 +42,7 @@ export default function LangSelector({ isMobile = false }: LangSelectorProps) {
                 <li key={locale}>
                   <button
                     onClick={() => switchLocale(locale)}
-                    className='block px-4 py-2 text-md w-full font-light text-left uppercase cursor-pointer gap-0'
+                    className={`block px-4 py-2 text-md w-full font-light text-left uppercase cursor-pointer gap-0 ${isMobile ? 'text-white' : ''}`}
                   >
                     {locale}
                   </button>
@@ -53,7 +53,7 @@ export default function LangSelector({ isMobile = false }: LangSelectorProps) {
       </AnimatePresence>
       <button
         onClick={() => setOpen(!open)}
-        className='text-md font-normal uppercase px-4 py-2 cursor-pointer'
+        className={`text-md font-normal uppercase px-4 py-2 cursor-pointer ${isMobile ? 'text-white' : ''}`}
       >
         {currentLocale}
       </button>
