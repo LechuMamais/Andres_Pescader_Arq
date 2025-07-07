@@ -12,7 +12,7 @@ import { Proyecto } from '../../types'
 import { portableTextToPlainText } from '../../sanity/portableTextToPlainText'
 import ProjectsNavigationArrows from '../../components/projectsNavigationArrows'
 
-type Params = Promise<{ proy_id: string; locale: 'es' | 'en' }>
+type Params = Promise<{ proy_id: string; locale: string }>
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { proy_id } = await params
@@ -27,9 +27,10 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 
 export default async function ProyectoPage({ params }: { params: Params }) {
   const { proy_id, locale } = await params
+  const lang = locale === 'en' ? 'en' : 'es' // Default to Spanish if locale is not recognized
 
   // Primero buscamos el proyecto actual para obtener su `orden`, luego lo usamos para buscar el anterior y siguiente
-  const proyecto = await client.fetch(getProyectoQueryBase(locale), { proy_id })
+  const proyecto = await client.fetch(getProyectoQueryBase(lang), { proy_id })
 
   if (!proyecto) {
     notFound()
